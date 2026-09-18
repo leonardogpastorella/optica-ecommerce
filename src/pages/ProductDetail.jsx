@@ -34,13 +34,13 @@ function ProductDetail() {
 
       <div className="mt-4 grid sm:grid-cols-2 gap-8">
         <div>
-          <div className="aspect-square bg-stone-100 rounded-2xl overflow-hidden">
-            <img
-              src={fotos[fotoActiva]}
-              alt={producto.nombre}
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <div className="aspect-square bg-stone-100 rounded-2xl overflow-hidden flex items-center justify-center p-4">
+  <img
+    src={fotos[fotoActiva]}
+    alt={producto.nombre}
+    className="max-w-full max-h-full object-contain"
+  />
+</div>
           {fotos.length > 1 && (
             <div className="flex gap-2 mt-3">
               {fotos.map((foto, i) => (

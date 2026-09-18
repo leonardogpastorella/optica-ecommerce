@@ -1,3 +1,5 @@
+import Footer from './components/Footer'
+import Hero from './components/Hero'
 import HowToBuy from './components/HowToBuy'
 import { useState, useMemo } from 'react'
 import { Routes, Route } from 'react-router-dom'
@@ -30,6 +32,7 @@ function App() {
   path="/"
   element={
     <>
+    <Hero />
       <main className="max-w-6xl mx-auto px-4 py-8">
         {loading && <p className="text-center text-stone-500 py-16">Cargando catálogo...</p>}
         {error && <p className="text-center text-red-600 py-16">Hubo un error al cargar el catálogo.</p>}
@@ -47,6 +50,8 @@ function App() {
 />
         <Route path="/producto/:id" element={<ProductDetail />} />
       </Routes>
+      
+      <Footer />
 
       <CartDrawer abierto={carritoAbierto} onClose={() => setCarritoAbierto(false)} />
     </div>

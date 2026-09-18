@@ -1,3 +1,5 @@
+
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useCart } from '../context/CartContext'
 
@@ -15,9 +17,9 @@ function Header({ onAbrirCarrito, categoriaActiva, onSeleccionarCategoria }) {
   return (
     <header className="sticky top-0 z-30 bg-stone-50/90 backdrop-blur border-b border-stone-200">
       <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        <h1 className="text-lg font-semibold tracking-widest uppercase text-stone-800">
-          Óptica
-        </h1>
+        <Link to="/" className="flex items-center">
+  <img src="/logo.jpeg" alt="Río Anteojos" className="h-9 w-auto" />
+</Link>
 
         {/* Nav desktop */}
         <nav className="hidden md:flex items-center gap-6">

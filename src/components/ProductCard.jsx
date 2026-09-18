@@ -7,13 +7,13 @@ function ProductCard({ producto }) {
   return (
     <div className="group bg-white rounded-2xl border border-stone-200 overflow-hidden hover:shadow-md transition-shadow">
       <Link to={`/producto/${producto.id}`}>
-        <div className="aspect-square bg-stone-100 overflow-hidden">
-          <img
-            src={producto.imagen}
-            alt={producto.nombre}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-        </div>
+        <div className="aspect-square bg-stone-100 overflow-hidden rounded-2xl flex items-center justify-center p-3">
+  <img
+    src={producto.imagen}
+    alt={producto.nombre}
+    className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300"
+  />
+</div>
       </Link>
       <div className="p-4">
         <Link to={`/producto/${producto.id}`}>
