@@ -1,3 +1,4 @@
+import HowToBuy from './components/HowToBuy'
 import { useState, useMemo } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
@@ -25,21 +26,25 @@ function App() {
       />
 
       <Routes>
-        <Route
-          path="/"
-          element={
-            <main className="max-w-6xl mx-auto px-4 py-8">
-              {loading && <p className="text-center text-stone-500 py-16">Cargando catálogo...</p>}
-              {error && <p className="text-center text-red-600 py-16">Hubo un error al cargar el catálogo.</p>}
-              {!loading && !error && productosFiltrados.length === 0 && (
-                <p className="text-center text-stone-500 py-16">No hay productos en esta categoría.</p>
-              )}
-              {!loading && !error && productosFiltrados.length > 0 && (
-                <ProductGrid productos={productosFiltrados} />
-              )}
-            </main>
-          }
-        />
+<Route
+  path="/"
+  element={
+    <>
+      <main className="max-w-6xl mx-auto px-4 py-8">
+        {loading && <p className="text-center text-stone-500 py-16">Cargando catálogo...</p>}
+        {error && <p className="text-center text-red-600 py-16">Hubo un error al cargar el catálogo.</p>}
+        {!loading && !error && productosFiltrados.length === 0 && (
+          <p className="text-center text-stone-500 py-16">No hay productos en esta categoría.</p>
+        )}
+        {!loading && !error && productosFiltrados.length > 0 && (
+          <ProductGrid productos={productosFiltrados} />
+        )}
+      </main>
+
+      <HowToBuy />
+    </>
+  }
+/>
         <Route path="/producto/:id" element={<ProductDetail />} />
       </Routes>
 
