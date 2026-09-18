@@ -13,42 +13,66 @@ function CartDrawer({ abierto, onClose }) {
 
   return (
     <>
-      {/* Fondo oscuro para cerrar al tocar afuera */}
       <div
         onClick={onClose}
-        style={{
-          position: 'fixed', inset: 0,
-          background: 'rgba(0,0,0,0.4)',
-          zIndex: 40,
-        }}
+        className="fixed inset-0 bg-black/40 z-40"
       />
-      {/* Panel lateral */}
-      <div style={{
-        position: 'fixed', top: 0, right: 0,
-        width: '90%', maxWidth: '380px', height: '100%',
-        background: 'white', zIndex: 50,
-        display: 'flex', flexDirection: 'column',
-        boxShadow: '-2px 0 8px rgba(0,0,0,0.15)',
-      }}>
-        <div style={{ padding: '1rem', borderBottom: '1px solid #eee', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h2 style={{ margin: 0, fontSize: '1.1rem' }}>Tu carrito</h2>
-          <button onClick={onClose} style={{ border: 'none', background: 'none', fontSize: '1.5rem', cursor: 'pointer' }}>×</button>
+      <div className="fixed top-0 right-0 w-full max-w-sm h-full bg-white z-50 flex flex-col shadow-xl">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-stone-200">
+          <h2 className="text-base font-semibold uppercase tracking-wide text-stone-800">
+            Tu carrito
+          </h2>
+          <button
+            onClick={onClose}
+            className="text-2xl leading-none text-stone-500 hover:text-stone-800 transition"
+            aria-label="Cerrar carrito"
+          >
+            ×
+          </button>
         </div>
 
-        <div style={{ flex: 1, overflowY: 'auto', padding: '1rem' }}>
-          {items.length === 0 && <p style={{ color: '#888' }}>Todavía no agregaste productos.</p>}
+        <div className="flex-1 overflow-y-auto px-5 py-4">
+          {items.length === 0 && (
+            <p className="text-stone-400 text-sm text-center py-10">
+              Todavía no agregaste productos.
+            </p>
+          )}
 
           {items.map(item => (
-            <div key={item.id} style={{ display: 'flex', gap: '0.75rem', marginBottom: '1rem', borderBottom: '1px solid #f0f0f0', paddingBottom: '1rem' }}>
-              <img src={item.imagen} alt={item.nombre} style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '4px' }} />
-              <div style={{ flex: 1 }}>
-                <p style={{ margin: 0, fontWeight: 'bold', fontSize: '0.9rem' }}>{item.nombre}</p>
-                <p style={{ margin: '0.25rem 0', fontSize: '0.85rem' }}>${item.precio.toLocaleString('es-AR')}</p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <button onClick={() => cambiarCantidad(item.id, item.cantidad - 1)}>-</button>
-                  <span>{item.cantidad}</span>
-                  <button onClick={() => cambiarCantidad(item.id, item.cantidad + 1)}>+</button>
-                  <button onClick={() => quitarProducto(item.id)} style={{ marginLeft: 'auto', color: '#c00', border: 'none', background: 'none', cursor: 'pointer' }}>
+            <div
+              key={item.id}
+              className="flex gap-3 py-4 border-b border-stone-100 last:border-0"
+            >
+              <img
+                src={item.imagen}
+                alt={item.nombre}
+                className="w-16 h-16 object-cover rounded-lg bg-stone-100"
+              />
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-stone-800 truncate">{item.nombre}</p>
+                <p className="text-sm text-stone-600 mt-0.5">
+                  ${item.precio.toLocaleString('es-AR')}
+                </p>
+                <div className="flex items-center gap-3 mt-2">
+                  <div className="flex items-center border border-stone-200 rounded-lg">
+                    <button
+                      onClick={() => cambiarCantidad(item.id, item.cantidad - 1)}
+                      className="w-7 h-7 flex items-center justify-center text-stone-600 hover:bg-stone-50"
+                    >
+                      −
+                    </button>
+                    <span className="w-6 text-center text-sm">{item.cantidad}</span>
+                    <button
+                      onClick={() => cambiarCantidad(item.id, item.cantidad + 1)}
+                      className="w-7 h-7 flex items-center justify-center text-stone-600 hover:bg-stone-50"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <button
+                    onClick={() => quitarProducto(item.id)}
+                    className="ml-auto text-xs text-red-600 hover:text-red-800 transition"
+                  >
                     Quitar
                   </button>
                 </div>
@@ -58,19 +82,22 @@ function CartDrawer({ abierto, onClose }) {
         </div>
 
         {items.length > 0 && (
-          <div style={{ padding: '1rem', borderTop: '1px solid #eee' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem' }}>
-              <span>Subtotal</span><span>${subtotal.toLocaleString('es-AR')}</span>
+          <div className="px-5 py-4 border-t border-stone-200 bg-stone-50">
+            <div className="flex justify-between text-sm text-stone-600">
+              <span>Subtotal</span>
+              <span>${subtotal.toLocaleString('es-AR')}</span>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem' }}>
-              <span>Envío (Gran Mendoza)</span><span>${costoEnvio.toLocaleString('es-AR')}</span>
+            <div className="flex justify-between text-sm text-stone-600 mt-1">
+              <span>Envío (Gran Mendoza)</span>
+              <span>${costoEnvio.toLocaleString('es-AR')}</span>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '1.05rem', margin: '0.5rem 0' }}>
-              <span>Total</span><span>${total.toLocaleString('es-AR')}</span>
+            <div className="flex justify-between text-base font-semibold text-stone-900 mt-2 mb-4">
+              <span>Total</span>
+              <span>${total.toLocaleString('es-AR')}</span>
             </div>
             <button
               onClick={handleFinalizar}
-              style={{ width: '100%', padding: '0.75rem', background: '#25D366', color: 'white', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer' }}
+              className="w-full py-3 rounded-lg bg-[#25D366] text-white font-medium hover:bg-[#1ebe5a] transition"
             >
               Finalizar compra por WhatsApp
             </button>

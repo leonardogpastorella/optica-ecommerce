@@ -1,36 +1,47 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Header from './components/Header'
 import ProductGrid from './components/ProductGrid'
 import CartDrawer from './components/CartDrawer'
+import ProductDetail from './pages/ProductDetail'
 import { useCatalog } from './hooks/useCatalog'
-import { useCart } from './context/CartContext'
 
 function App() {
   const { productos, loading, error } = useCatalog()
-  const { cantidadTotal } = useCart()
   const [carritoAbierto, setCarritoAbierto] = useState(false)
+  const [categoriaActiva, setCategoriaActiva] = useState(null)
+
+  const productosFiltrados = useMemo(() => {
+    if (!categoriaActiva) return productos
+    return productos.filter(p => p.categoria === categoriaActiva)
+  }, [productos, categoriaActiva])
 
   return (
-    <div>
-      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem' }}>
-        <h1 style={{ margin: 0, fontSize: '1.3rem' }}>Óptica - Catálogo</h1>
-        <button onClick={() => setCarritoAbierto(true)} style={{ position: 'relative', border: 'none', background: 'none', fontSize: '1.5rem', cursor: 'pointer' }}>
-          🛒
-          {cantidadTotal > 0 && (
-            <span style={{
-              position: 'absolute', top: -4, right: -8,
-              background: 'red', color: 'white', borderRadius: '50%',
-              fontSize: '0.7rem', width: '18px', height: '18px',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-            }}>
-              {cantidadTotal}
-            </span>
-          )}
-        </button>
-      </header>
+    <div className="min-h-screen bg-stone-50">
+      <Header
+        onAbrirCarrito={() => setCarritoAbierto(true)}
+        categoriaActiva={categoriaActiva}
+        onSeleccionarCategoria={setCategoriaActiva}
+      />
 
-      {loading && <p style={{ textAlign: 'center' }}>Cargando catálogo...</p>}
-      {error && <p style={{ textAlign: 'center', color: 'red' }}>Hubo un error al cargar el catálogo.</p>}
-      {!loading && !error && <ProductGrid productos={productos} />}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <main className="max-w-6xl mx-auto px-4 py-8">
+              {loading && <p className="text-center text-stone-500 py-16">Cargando catálogo...</p>}
+              {error && <p className="text-center text-red-600 py-16">Hubo un error al cargar el catálogo.</p>}
+              {!loading && !error && productosFiltrados.length === 0 && (
+                <p className="text-center text-stone-500 py-16">No hay productos en esta categoría.</p>
+              )}
+              {!loading && !error && productosFiltrados.length > 0 && (
+                <ProductGrid productos={productosFiltrados} />
+              )}
+            </main>
+          }
+        />
+        <Route path="/producto/:id" element={<ProductDetail />} />
+      </Routes>
 
       <CartDrawer abierto={carritoAbierto} onClose={() => setCarritoAbierto(false)} />
     </div>

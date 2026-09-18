@@ -24,15 +24,17 @@ export function useCatalog() {
         const normalizados = data
           .filter(p => p['Disponible'] === 'Sí')
           .map(p => ({
-            id: p['SKU / Código'],
-            sku: p['SKU / Código'],
-            nombre: p['Nombre'],
-            categoria: p['Categoría'],
-            precio: limpiarPrecio(p['Precio']),
-            imagen: p['Imagen (link)'],
-            descripcion: p['Descripción'],
-            marca: p['Marca'],
-          }));
+  id: p['SKU / Código'],
+  sku: p['SKU / Código'],
+  nombre: p['Nombre'],
+  categoria: p['Categoría'],
+  precio: limpiarPrecio(p['Precio']),
+  imagen: p['Imagen (link)'],
+  imagen2: p['Imagen 2 (link)'] || null,
+  imagen3: p['Imagen 3 (link)'] || null,
+  descripcion: p['Descripción'],
+  marca: p['Marca'],
+}));
 
         setProductos(normalizados);
         setLoading(false);
