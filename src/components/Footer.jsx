@@ -8,7 +8,7 @@ function Footer() {
       <div className="max-w-6xl mx-auto px-4 py-10">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           <Link to="/" className="flex items-center">
-            <img src="/logo.jpeg" alt="Río Anteojos" className="h-8 w-auto" />
+            <img src="/logo.svg" alt="Río Anteojos" className="h-12 w-auto" />
           </Link>
 
           <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
