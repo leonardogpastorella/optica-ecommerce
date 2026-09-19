@@ -21,7 +21,7 @@ const PASOS = [
 
 function HowToBuy() {
   return (
-    <section className="bg-stone-100 border-y border-stone-200">
+    <section className="bg-rio-arena border-y border-stone-200">
       <div className="max-w-6xl mx-auto px-4 py-12">
         <h2 className="text-center text-sm font-semibold uppercase tracking-widest text-stone-800 mb-10">
           ¿Cómo comprar?

@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@theme {
+  --color-rio-verde: #313D34;
+  --color-rio-arena: #E5DDD2;
+}
