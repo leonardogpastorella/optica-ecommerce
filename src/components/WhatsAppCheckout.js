@@ -1,4 +1,7 @@
-const NUMERO_WHATSAPP = '5492613380337' // sin +, espacios ni guiones
+export const NUMERO_WHATSAPP = '5492613380337'
+
+
+
 
 export function generarLinkWhatsApp(items, subtotal, envio, total) {
   const lineasProductos = items

@@ -1,3 +1,4 @@
+import FloatingWhatsAppButton from './components/FloatingWhatsAppButton'
 import Footer from './components/Footer'
 import Hero from './components/Hero'
 import HowToBuy from './components/HowToBuy'
@@ -45,6 +46,7 @@ function App() {
       </main>
 
       <HowToBuy />
+       <FloatingWhatsAppButton />
     </>
   }
 />
