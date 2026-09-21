@@ -22,22 +22,17 @@ function Footer() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-4">
-            <a
-              href="#"
-              aria-label="Instagram"
-              className="text-stone-500 hover:text-stone-800 transition text-lg"
-            >
-              📷
-            </a>
-
-              <a href="#"
-              aria-label="Facebook"
-              className="text-stone-500 hover:text-stone-800 transition text-lg"
-            >
-              👤
-            </a>
-          </div>
+        <div className="flex items-center gap-4">
+  <a href="#" aria-label="Facebook" className="opacity-70 hover:opacity-100 transition">
+    <img src="/social-facebook.png" alt="Facebook" className="w-5 h-5" />
+  </a>
+  <a href="#" aria-label="Instagram" className="opacity-70 hover:opacity-100 transition">
+    <img src="/social-instagram.png" alt="Instagram" className="w-5 h-5" />
+  </a>
+  <a href="#" aria-label="TikTok" className="opacity-70 hover:opacity-100 transition">
+    <img src="/social-tiktok.png" alt="TikTok" className="w-5 h-5" />
+  </a>
+</div>
         </div>
 
         <p className="text-center text-xs text-stone-400 mt-8">
