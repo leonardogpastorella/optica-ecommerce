@@ -21,7 +21,7 @@ function App() {
   }, [productos, categoriaActiva])
 
   return (
-    <div className="min-h-screen bg-rio-crema">
+    <div className="min-h-screen bg-rio-cream">
       <Header
         onAbrirCarrito={() => setCarritoAbierto(true)}
         categoriaActiva={categoriaActiva}
