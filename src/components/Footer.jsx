@@ -4,7 +4,7 @@ const CATEGORIAS = ['Lentes de Sol', 'Receta Premium', 'Receta Eco', 'Clip-on']
 
 function Footer() {
   return (
-    <footer className="border-t border-stone-200 bg-stone-50">
+    <footer className="border-t border-stone-200 bg-rio-crema">
       <div className="max-w-6xl mx-auto px-4 py-10">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           <Link to="/" className="flex items-center">

@@ -15,7 +15,7 @@ function Header({ onAbrirCarrito, categoriaActiva, onSeleccionarCategoria }) {
   }
 
   return (
-    <header className="sticky top-0 z-30 bg-stone-50/90 backdrop-blur border-b border-stone-200">
+    <header className="sticky top-0 z-30 bg-rio-crema/90 backdrop-blur border-b border-stone-200">
       <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center">
   <img src="/logo.svg" alt="Río Anteojos" className="h-15 w-auto" />
@@ -71,7 +71,7 @@ function Header({ onAbrirCarrito, categoriaActiva, onSeleccionarCategoria }) {
 
       {/* Menú mobile desplegable */}
       {menuAbierto && (
-        <nav className="md:hidden flex flex-col border-t border-stone-200 bg-stone-50">
+        <nav className="md:hidden flex flex-col border-t border-stone-200 bg-rio-crema">
           <button
             onClick={() => seleccionar(null)}
             className={`text-left px-4 py-3 text-sm uppercase tracking-wide border-b border-stone-100 ${

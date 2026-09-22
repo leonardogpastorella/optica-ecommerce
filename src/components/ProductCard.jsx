@@ -7,7 +7,7 @@ function ProductCard({ producto }) {
   return (
     <div className="group bg-white rounded-2xl border border-stone-200 overflow-hidden hover:shadow-md transition-shadow">
       <Link to={`/producto/${producto.id}`}>
-        <div className="aspect-square bg-stone-100 overflow-hidden rounded-2xl flex items-center justify-center p-3">
+        <div className="aspect-square bg-rio-crema overflow-hidden rounded-2xl flex items-center justify-center p-3">
   <img
     src={producto.imagen}
     alt={producto.nombre}
