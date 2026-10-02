@@ -36,7 +36,7 @@ export function useCatalog() {
   imagen2: p['Imagen 2 (link)'] || null,
   imagen3: p['Imagen 3 (link)'] || null,
   precio: limpiarPrecio(p['Precio']),
-  stock: parseInt(p['Stock'], 10) || 0,
+  stock: p['Stock'], 
   disponible : p['Disponible'] === 'Sí',
   
 }));

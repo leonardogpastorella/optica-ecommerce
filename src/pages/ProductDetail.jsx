@@ -60,13 +60,17 @@ function ProductDetail() {
 
         <div>
           <p className="text-xs uppercase tracking-wide text-rio-taupe">{producto.categoria}</p>
+          <h2 className="text-xl font-semibold text-rio-green mt-1 uppercase">{producto.marca}</h2>
           <h1 className="text-2xl font-semibold text-rio-green mt-1">{producto.nombre}</h1>
-          <p className="text-xl font-semibold text-rio-green mt-3">
+          <p className="text-2xl font-semibold text-rio-green mt-3">
             {producto.precio > 0 ? `$${producto.precio.toLocaleString('es-AR')}` : 'Consultar precio'}
           </p>
           {producto.descripcion && (
             <p className="text-sm text-rio-taupe mt-4 leading-relaxed">{producto.descripcion}</p>
           )}
+          <p className="text-sm text-rio-taupe mt-4 leading-relaxed">Talle: {producto.talle}</p>
+          <p className="text-sm text-rio-taupe mt-0 leading-relaxed">Color: {producto.color}</p>
+          <p className="text-sm text-rio-taupe mt-0 leading-relaxed">{producto.stock}</p>
           {producto.precio > 0 && (
             <button
               onClick={() => agregarProducto(producto)}
