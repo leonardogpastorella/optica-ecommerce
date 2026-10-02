@@ -26,14 +26,19 @@ export function useCatalog() {
           .map(p => ({
   id: p['SKU / Código'],
   sku: p['SKU / Código'],
-  nombre: p['Nombre'],
+  marca: p['Marca'],
+  nombre: p['Modelo'],
+  color: p['Color'],
+  talle : p['Talle'],
   categoria: p['Categoría'],
-  precio: limpiarPrecio(p['Precio']),
-  imagen: p['Imagen (link)'],
+  descripcion: p['Descripción'],
+  imagen: p['Imagen 1 (link)'],
   imagen2: p['Imagen 2 (link)'] || null,
   imagen3: p['Imagen 3 (link)'] || null,
-  descripcion: p['Descripción'],
-  marca: p['Marca'],
+  precio: limpiarPrecio(p['Precio']),
+  stock: parseInt(p['Stock'], 10) || 0,
+  disponible : p['Disponible'] === 'Sí',
+  
 }));
 
         setProductos(normalizados);

@@ -45,17 +45,17 @@ function Header({ onAbrirCarrito, categoriaActiva, onSeleccionarCategoria }) {
 
         <div className="flex items-center gap-3">
           <button
-            onClick={onAbrirCarrito}
-            className="relative p-2 text-rio-green hover:text-rio-greenLight transition"
-            aria-label="Abrir carrito"
-          >
-            <span className="text-2xl">🛒</span>
-            {cantidadTotal > 0 && (
-              <span className="absolute -top-1 -right-1 bg-rio-green text-rio-cream text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                {cantidadTotal}
-              </span>
-            )}
-          </button>
+  onClick={onAbrirCarrito}
+  className="relative p-2 hover:opacity-70 transition"
+  aria-label="Abrir carrito"
+>
+  <img src="/icon-cart.png" alt="" className="w-9 h-9" />
+  {cantidadTotal > 0 && (
+    <span className="absolute -top-1 -right-1 bg-rio-green text-rio-cream text-xs rounded-full w-5 h-5 flex items-center justify-center">
+      {cantidadTotal}
+    </span>
+  )}
+</button>
 
           {/* Botón hamburguesa (solo mobile) */}
           <button
