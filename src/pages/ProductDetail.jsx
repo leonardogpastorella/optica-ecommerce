@@ -70,7 +70,7 @@ function ProductDetail() {
           )}
           <p className="text-sm text-rio-taupe mt-4 leading-relaxed">Talle: {producto.talle}</p>
           <p className="text-sm text-rio-taupe mt-0 leading-relaxed">Color: {producto.color}</p>
-          <p className="text-sm text-rio-taupe mt-0 leading-relaxed">{producto.stock}</p>
+          <p className="text-sm italic text-rio-taupe mt-0 leading-relaxed">{producto.stock}</p>
           {producto.precio > 0 && (
             <button
               onClick={() => agregarProducto(producto)}
