@@ -1,9 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { useCart } from '../context/CartContext'
 
 function ProductCard({ producto }) {
-  const { agregarProducto } = useCart()
   const [hover, setHover] = useState(false)
   const [mostrarSegunda, setMostrarSegunda] = useState(false)
   const intervaloRef = useRef(null)
@@ -14,64 +12,51 @@ function ProductCard({ producto }) {
     if (hover && tieneSegundaFoto) {
       intervaloRef.current = setInterval(() => {
         setMostrarSegunda(prev => !prev)
-      }, 800) // cada 1.2s alterna
+      }, 1200)
     }
-
-    return () => {
-      clearInterval(intervaloRef.current)
-    }
+    return () => clearInterval(intervaloRef.current)
   }, [hover, tieneSegundaFoto])
 
   function handleMouseLeave() {
     setHover(false)
-    setMostrarSegunda(false) // vuelve a la primera foto al sacar el mouse
+    setMostrarSegunda(false)
   }
 
   return (
-    <div
-      className="group bg-rio-cream rounded-2xl border border-stone-200 overflow-hidden hover:shadow-md transition-shadow"
+    <Link
+      to={`/producto/${producto.id}`}
+      className="group block"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={handleMouseLeave}
     >
-      <Link to={`/producto/${producto.id}`}>
-        <div className="relative aspect-square bg-rio-creamDark overflow-hidden rounded-2xl flex items-center justify-center p-3">
+      <div className="relative aspect-[4/3] bg-rio-creamDark overflow-hidden flex items-center justify-center p-4">
+        <img
+          src={producto.imagen}
+          alt={producto.nombre}
+          className={`absolute max-w-full max-h-full object-contain transition-all duration-700 group-hover:scale-105 ${
+            mostrarSegunda ? 'opacity-0' : 'opacity-100'
+          }`}
+        />
+        {tieneSegundaFoto && (
           <img
-            src={producto.imagen}
+            src={producto.imagen2}
             alt={producto.nombre}
-            className={`absolute max-w-full max-h-full object-contain transition-opacity duration-700 ${
-              mostrarSegunda ? 'opacity-0' : 'opacity-100'
+            className={`absolute max-w-full max-h-full object-contain transition-all duration-700 group-hover:scale-105 ${
+              mostrarSegunda ? 'opacity-100' : 'opacity-0'
             }`}
           />
-          {tieneSegundaFoto && (
-            <img
-              src={producto.imagen2}
-              alt={producto.nombre}
-              className={`absolute max-w-full max-h-full object-contain transition-opacity duration-700 ${
-                mostrarSegunda ? 'opacity-100' : 'opacity-0'
-              }`}
-            />
-          )}
-        </div>
-      </Link>
-      <div className="p-4">
-        <Link to={`/producto/${producto.id}`}>
-          <h3 className="text-sm text-rio-green truncate hover:underline">
-            <span className="font-bold">{producto.marca}</span> {producto.nombre}
-          </h3>
-        </Link>
-        <p className="mt-1 text-base font-semibold text-rio-green">
-          {producto.precio > 0 ? `$${producto.precio.toLocaleString('es-AR')}` : 'Consultar precio'}
-        </p>
-        {producto.precio > 0 && (
-          <button
-            onClick={() => agregarProducto(producto)}
-            className="mt-3 w-full py-2 text-sm font-medium rounded-lg bg-rio-green text-rio-cream hover:bg-rio-greenLight transition"
-          >
-            Agregar al carrito
-          </button>
         )}
       </div>
-    </div>
+
+      <div className="pt-3">
+        <h3 className="text-sm text-rio-green truncate">
+          <span className="font-bold">{producto.marca}</span> {producto.nombre}
+        </h3>
+        <p className="mt-1 text-sm text-rio-green">
+          {producto.precio > 0 ? `$${producto.precio.toLocaleString('es-AR')}` : 'Consultar precio'}
+        </p>
+      </div>
+    </Link>
   )
 }
 
