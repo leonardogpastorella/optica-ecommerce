@@ -1,17 +1,21 @@
+import { useState, useMemo, useEffect } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import { useConfig } from './hooks/useConfig'
+import Maintenance from './pages/Maintenance'
 import FloatingWhatsAppButton from './components/FloatingWhatsAppButton'
 import Footer from './components/Footer'
 import Hero from './components/Hero'
 import HowToBuy from './components/HowToBuy'
-import { useState, useMemo } from 'react'
-import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import ProductGrid from './components/ProductGrid'
 import CartDrawer from './components/CartDrawer'
 import ProductDetail from './pages/ProductDetail'
 import { useCatalog } from './hooks/useCatalog'
+import PoliticaDevolucion from './pages/PoliticaDevolucion'
 
 function App() {
   const { productos, loading, error } = useCatalog()
+  const { mantenimiento, loadingConfig } = useConfig()
   const [carritoAbierto, setCarritoAbierto] = useState(false)
   const [categoriaActiva, setCategoriaActiva] = useState(null)
 
@@ -19,6 +23,18 @@ function App() {
     if (!categoriaActiva) return productos
     return productos.filter(p => p.categoria === categoriaActiva)
   }, [productos, categoriaActiva])
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [categoriaActiva])
+
+  if (loadingConfig) {
+    return null
+  }
+
+  if (mantenimiento) {
+    return <Maintenance />
+  }
 
   return (
     <div className="min-h-screen bg-rio-cream">
@@ -29,30 +45,31 @@ function App() {
       />
 
       <Routes>
-<Route
-  path="/"
-  element={
-    <>
-    <Hero />
-      <main className="max-w-6xl mx-auto px-4 py-8">
-        {loading && <p className="text-center text-stone-500 py-16">Cargando catálogo...</p>}
-        {error && <p className="text-center text-red-600 py-16">Hubo un error al cargar el catálogo.</p>}
-        {!loading && !error && productosFiltrados.length === 0 && (
-          <p className="text-center text-stone-500 py-16">No hay productos en esta categoría.</p>
-        )}
-        {!loading && !error && productosFiltrados.length > 0 && (
-          <ProductGrid productos={productosFiltrados} />
-        )}
-      </main>
+        <Route
+          path="/"
+          element={
+            <>
+              <Hero />
+              <main className="max-w-6xl mx-auto px-4 py-8">
+                {loading && <p className="text-center text-stone-500 py-16">Cargando catálogo...</p>}
+                {error && <p className="text-center text-red-600 py-16">Hubo un error al cargar el catálogo.</p>}
+                {!loading && !error && productosFiltrados.length === 0 && (
+                  <p className="text-center text-stone-500 py-16">No hay productos en esta categoría.</p>
+                )}
+                {!loading && !error && productosFiltrados.length > 0 && (
+                  <ProductGrid productos={productosFiltrados} />
+                )}
+              </main>
 
-      <HowToBuy />
-       <FloatingWhatsAppButton />
-    </>
-  }
-/>
+              <HowToBuy />
+              <FloatingWhatsAppButton />
+            </>
+          }
+        />
         <Route path="/producto/:id" element={<ProductDetail />} />
+        <Route path="/politica-de-devolucion" element={<PoliticaDevolucion />} />
       </Routes>
-      
+
       <Footer />
 
       <CartDrawer abierto={carritoAbierto} onClose={() => setCarritoAbierto(false)} />

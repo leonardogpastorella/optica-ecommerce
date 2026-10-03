@@ -60,8 +60,9 @@ function ProductDetail() {
 
         <div>
           <p className="text-xs uppercase tracking-wide text-rio-taupe">{producto.categoria}</p>
-          <h2 className="text-xl font-semibold text-rio-green mt-1 uppercase">{producto.marca}</h2>
-          <h1 className="text-2xl font-semibold text-rio-green mt-1">{producto.nombre}</h1>
+                    <h1 className="text-2xl text-rio-green mt-1">
+  <span className="font-bold">{producto.marca}</span> {producto.nombre}
+</h1>
           <p className="text-2xl font-semibold text-rio-green mt-3">
             {producto.precio > 0 ? `$${producto.precio.toLocaleString('es-AR')}` : 'Consultar precio'}
           </p>

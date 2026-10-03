@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useCart } from '../context/CartContext'
 
-const CATEGORIAS = ['Lentes de Sol', 'Receta Premium', 'Receta Eco', 'Clip-on']
+const CATEGORIAS = ['Lentes de Sol', 'Receta Premium', 'Receta Eco', 'Clip-on', 'Accesorios']
 
 function Header({ onAbrirCarrito, categoriaActiva, onSeleccionarCategoria }) {
   const { cantidadTotal } = useCart()

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-const CATEGORIAS = ['Lentes de Sol', 'Receta Premium', 'Receta Eco', 'Clip-on']
+const CATEGORIAS = ['Lentes de Sol', 'Receta Premium', 'Receta Eco', 'Clip-on', 'Accesorios']
 
 function Footer() {
   return (
@@ -34,7 +34,14 @@ function Footer() {
             </a>
           </div>
         </div>
-
+        <div className="text-center mt-6">
+  <Link
+    to="/politica-de-devolucion"
+    className="text-xs text-rio-cream/70 hover:text-rio-cream underline transition"
+  >
+    Política de devolución
+  </Link>
+</div>
         <p className="text-center text-xs text-rio-cream/60 mt-8">
           © {new Date().getFullYear()} Río Anteojos. Todos los derechos reservados.
         </p>
