@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useCart } from '../context/CartContext'
 
@@ -7,11 +7,16 @@ const CATEGORIAS = ['Lentes de Sol', 'Receta Premium', 'Receta Eco', 'Clip-on', 
 function Header({ onAbrirCarrito, categoriaActiva, onSeleccionarCategoria }) {
   const { cantidadTotal } = useCart()
   const [menuAbierto, setMenuAbierto] = useState(false)
+  const navigate = useNavigate()
 
   function seleccionar(categoria) {
     onSeleccionarCategoria(categoria)
     setMenuAbierto(false)
+    navigate('/')
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
+
+
 
   return (
     <header className="sticky top-0 z-30 bg-rio-cream/90 backdrop-blur border-b border-stone-200">

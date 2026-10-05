@@ -1,7 +1,7 @@
 import Papa from 'papaparse'
 import { useState, useEffect } from 'react'
 
-const CONFIG_URL = 'PEGAR_ACA_LA_URL_DEL_CSV_DE_CONFIG'
+const CONFIG_URL = 'https://docs.google.com/spreadsheets/d/1wiQkFkyqpmLCulP_5EpMaH0HKpa156ptIFXiuh-3xYs/edit?usp=sharing'
 
 export function useConfig() {
   const [mantenimiento, setMantenimiento] = useState(false)
