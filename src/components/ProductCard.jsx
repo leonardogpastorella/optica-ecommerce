@@ -12,7 +12,7 @@ function ProductCard({ producto }) {
     if (hover && tieneSegundaFoto) {
       intervaloRef.current = setInterval(() => {
         setMostrarSegunda(prev => !prev)
-      }, 1200)
+      }, 800)
     }
     return () => clearInterval(intervaloRef.current)
   }, [hover, tieneSegundaFoto])
@@ -49,13 +49,16 @@ function ProductCard({ producto }) {
       </div>
 
       <div className="pt-3">
-        <h3 className="text-sm text-rio-green truncate">
-          <span className="font-bold">{producto.marca}</span> {producto.nombre}
-        </h3>
-        <p className="mt-1 text-sm text-rio-green">
-          {producto.precio > 0 ? `$${producto.precio.toLocaleString('es-AR')}` : 'Consultar precio'}
-        </p>
-      </div>
+  <p className="text-xs uppercase tracking-wide text-rio-taupe">
+    {producto.categoria}
+  </p>
+  <h3 className="text-sm text-rio-green truncate mt-0.5">
+    <span className="font-bold">{producto.marca}</span> {producto.nombre}
+  </h3>
+  <p className="mt-1 text-sm text-rio-green">
+    {producto.precio > 0 ? `$${producto.precio.toLocaleString('es-AR')}` : 'Consultar precio'}
+  </p>
+</div>
     </Link>
   )
 }
